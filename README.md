@@ -13,3 +13,13 @@
     * **Random-Guess Model**
     * **Target-Guess Model**
     * **BOW Logistic Regression**
+
+## Files
+* `Pre_Trained_Transformers.ipynb`:
+> Includes all relevant code for the assignment (datasets, pre-trained and fine-tuned models, prompt engineering for zero shot models, and baselines)
+
+* `zero_shot_results.csv`:
+> Results from the selected zero shot models with an engineered prompt
+
+* `report.md`
+> Contains all reflections on assignment
