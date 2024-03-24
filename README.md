@@ -21,5 +21,8 @@
 * `zero_shot_results.csv`:
 > Results from the selected zero shot models with an engineered prompt
 
+* `images`
+> Contains images for report
+
 * `report.md`
 > Contains all reflections on assignment
