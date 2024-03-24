@@ -5,7 +5,7 @@ This dataset was pulled from [Huggingface.com](https://huggingface.co/datasets/s
 * **Spam:** Irrelevant/inappropriate messages sent on the internet to a large number of recipients.
 * **Ham:** The opposite of spam -- relevant/personal messages sent from another individual.
 
-![Dataset](sms_spam_dataset.png)
+![Dataset](images/sms_spam_dataset.png)
 
 The dataset was eventually split into a training and testing set with a roughly 80-20 division:
 * 4,000 training parameters
@@ -57,7 +57,7 @@ I created three baselines that are very reproducible:
 For the Random and Target Class, I generated 10,000 values as the actual values and compared them to 10,000 generated predictions and 10,000 spam labels accordingly.
 
 ## Results
-![Results](results.png)
+![Results](images/results.png)
 Obviously, the pre-trained fine-tuned transformer models by far predict the spam messages the best with nearly a 100% f1-score. The baseline logistic regression model demonstrates that this shouldn't be a difficult task at all with an ability to predict an f1-score of ~81.6%. At the same time, the zero-shot classification seems off. These values are disgustingly low, and although they don't have bad accuracy (Bart ~70%), the metric we are concerned with in F1-score doesn't perform well at all. In fact, both zero-shot models do a horrible job even compared to the random baseline model. This means we could almost select randomly and do a better job. I am not sure if this is a user error or do to the fact that we had to use models fine-tuned and trained for different tasks (like spanish classification in this case), but it is alarming how poorly the zero-shot models performed. 
 
 ## Reflection
