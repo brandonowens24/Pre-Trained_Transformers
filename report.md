@@ -5,7 +5,7 @@ This dataset was pulled from [Huggingface.com](https://huggingface.co/datasets/s
 * **Spam:** Irrelevant/inappropriate messages sent on the internet to a large number of recipients.
 * **Ham:** The opposite of spam -- relevant/personal messages sent from another individual.
 
-![Dataset](sms_spam_dataset.png)
+![Dataset](images/sms_spam_dataset.png)
 
 The dataset was eventually split into a training and testing set with a roughly 80-20 division:
 * 4,000 training parameters
@@ -57,10 +57,12 @@ I created three baselines that are very reproducible:
 For the Random and Target Class, I generated 10,000 values as the actual values and compared them to 10,000 generated predictions and 10,000 spam labels accordingly.
 
 ## Results
-![Results](results.png)
+![Results](images/results.png)
+
 Obviously, the pre-trained fine-tuned transformer models by far predict the spam messages the best with nearly a 100% f1-score. The baseline logistic regression model demonstrates that this shouldn't be a difficult task at all with an ability to predict an f1-score of ~81.6%. At the same time, the zero-shot classification seems off. These values are disgustingly low, and although they don't have bad accuracy (Bart ~70%), the metric we are concerned with in F1-score doesn't perform well at all. In fact, both zero-shot models do a horrible job even compared to the random baseline model. This means we could almost select randomly and do a better job. I am not sure if this is a user error or do to the fact that we had to use models fine-tuned and trained for different tasks (like spanish classification in this case), but it is alarming how poorly the zero-shot models performed. 
 
 ## Reflection
+
 During the completion of this assignment, I was able to use the transformers package in Python. Although the concept is still a little fuzzy and I had to use a lot of documentation help, I think it is very interesting to see that all of these models have their own tokenizer objects because they classify tokens in different ways. Additionally, I didn't know that this level of NLP power was just open-source on the internet for people like me to use. 
 
 When doing this project some challenges faced included utilizing these models in terms of computation and size. I ended up just selecting smaller models with limited parameters and switched my Colab runtime to process some things on their free-tier GPU (which sped things up SIGNIFICANTLY). Other than that I struggled with the prompt engineering, but mainly because the models weren't performing well no matter what prompt I chose and because the models I selected weren't specific for classification or question/answering tasks. This was because I tried importing specific models but kept receiving an error for which no documentation I looked at helped. 
