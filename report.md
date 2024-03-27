@@ -28,7 +28,7 @@ The pre-trained transformer models selected included:
 My dataset needed to be tokenized according to the models already set up tokenization, split into training and testing, and applied to an AutoSequence Classifier. It was then applied to a trainer and eventually ran on the testing dataset to compute the desired F1 Scores.
 
 ## Zero-Shot Classification
-For zero-shot classification I utilized two zero-shot models that were fine-tuned on something outside of my own dataset.
+For zero-shot classification I utilized two zero-shot models also found on Huggingface.
 
 * [**BART**](https://huggingface.co/docs/transformers/en/model_doc/bart)
   * BART Large trained on the MNLI dataset
@@ -48,7 +48,6 @@ For zero-shot classification I utilized two zero-shot models that were fine-tune
 
 Of these prompts, prompt 1 performed the best with the DeBERT model and prompt 2 worked the best with the BART model (although neither overall performed that well).
 
-
 ## Baselines
 I created three baselines that are very reproducible:
 * **BOW** which utilized a TFIDF approach and a logistic regression.
@@ -60,7 +59,15 @@ For the Random and Target Class, I generated 10,000 values as the actual values 
 ## Results
 ![Results](images/results.png)
 
-Obviously, the pre-trained fine-tuned transformer models by far predict the spam messages the best with nearly a 100% f1-score. The baseline logistic regression model demonstrates that this shouldn't be a difficult task at all with an ability to predict an f1-score of ~81.6%. At the same time, the zero-shot classification seems off. These values are disgustingly low, and although they don't have bad accuracy (Bart ~70%), the metric we are concerned with in F1-score doesn't perform well at all. In fact, both zero-shot models do a horrible job even compared to the random baseline model. This means we could almost select randomly and do a better job. I am not sure if this is a user error or do to the fact that we had to use models fine-tuned and trained for so many different tasks (although it is unclear if it was specifically trained for this sms spam detection task).
+Obviously, the pre-trained fine-tuned transformer models by far predict the spam messages the best with nearly a 100% f1-score. The baseline logistic regression model demonstrates that this shouldn't be a difficult task at all with an ability to predict an f1-score of ~81.6%. At the same time, the zero-shot classification seems off. These values are disgustingly low, and although they don't have bad accuracy (Bart ~70%), the metric we are concerned with in F1-score doesn't perform well at all. In fact, both zero-shot models do a horrible job even compared to the random baseline model. This means we could almost select randomly and do a better job. What I happened here is that I selected zero-shot models from Huggingface that weren't specifically trained for classification tasks. The Bart model I chose was trained on the MNLI dataset and the Selectra was trained on a portion of the XLNI dataset. This is a problem because obviously I wanted to do a classification task. 
+
+With this mistake in mind, I actually found two classification-trained zero-shot models (not included in code, picture added): 
+* [Stack Overflow Zero Shot Classification](https://huggingface.co/amaye15/Stack-Overflow-Zero-Shot-Classification)
+* [Theme Classification](https://huggingface.co/eleldar/theme-classification)
+
+These two datasets takes advantage of DeBERTa's zero-shot classification, but even then apparently were trained on MLNI tasks. I struggled to find zero-shot models on the zero-shot classification section of Huggingface that weren't trained for MLNI. The results were also poor (and the same? They must have been trained from the same dataset):
+
+![New Results](images/SOandTheme.png)
 
 ## Reflection
 
